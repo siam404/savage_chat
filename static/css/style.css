@@ -1,0 +1,146 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Courier New", monospace;
+  background-color: #1c1c1c;
+  color: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.chat-container {
+  width: 95%;
+  max-width: 600px;
+  height: 90vh;
+  background-color: #1c1c1c;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chat-header {
+  padding: 15px 20px;
+  background-color: #1c1c1c;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+
+.chat-log {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+.chat-message {
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.chat-message-user {
+  justify-content: flex-end;
+}
+
+.chat-message-bot {
+  justify-content: flex-start;
+}
+
+.message-bubble {
+  padding: 10px 15px;
+  border-radius: 18px;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+.user-bubble {
+  background-color: #333;
+  color: #fff;
+}
+
+.bot-bubble {
+  background-color: #1c1c1c;
+  color: #fff;
+  border: 1px solid #333;
+}
+
+.chat-input {
+  display: flex;
+  border-top: 1px solid #333;
+  align-items: center;
+  padding: 5px;
+  background-color: #1c1c1c;
+}
+
+#input {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  background-color: #1c1c1c;
+  color: #f1f1f1;
+  font-size: 16px;
+  outline: none;
+}
+
+.send-button {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  color: #66fcf1;
+  border: none;
+  margin-right: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease;
+  opacity: 0.7;
+  outline: none;
+}
+
+.send-button:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.send-button:active {
+  transform: scale(0.9);
+  opacity: 0.9;
+}
+
+.send-button.sending {
+  animation: sendPulse 0.3s ease;
+}
+
+@keyframes sendPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.85); opacity: 0.8; }
+  100% { transform: scale(1); }
+}
+
+.send-button i {
+  font-size: 20px;
+}
+
+/* Style for placeholder text */
+::placeholder {
+  color: #666;
+}
+
+@media screen and (max-width: 600px) {
+  .chat-container {
+    height: 100vh;
+    border-radius: 0;
+  }
+
+  .chat-header {
+    font-size: 18px;
+  }
+} 

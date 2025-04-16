@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Fucking friend</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Courier New", monospace;
+      background-color: #1c1c1c;
+      color: #f1f1f1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .chat-container {
+      width: 95%;
+      max-width: 600px;
+      height: 90vh;
+      background-color: #2a2a2a;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      padding: 15px 20px;
+      background-color: #333;
+      font-size: 20px;
+      font-weight: bold;
+      text-align: center;
+      border-bottom: 1px solid #444;
+    }
+
+    .chat-log {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+    }
+
+    .chat-message {
+      margin-bottom: 10px;
+    }
+
+    .chat-message b {
+      color: #66fcf1;
+    }
+
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #444;
+    }
+
+    #input {
+      flex: 1;
+      padding: 15px;
+      border: none;
+      background-color: #222;
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+    }
+
+    @media screen and (max-width: 600px) {
+      .chat-container {
+        height: 100vh;
+        border-radius: 0;
+      }
+
+      .chat-header {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">💬 Your Fucking friend</div>
+    <div id="chatlog" class="chat-log"></div>
+    <div class="chat-input">
+      <input id="input" type="text" placeholder="Type and press Enter..." />
+    </div>
+  </div>
+
+  <script>
+    const input = document.getElementById("input");
+    const chatlog = document.getElementById("chatlog");
+
+    input.addEventListener("keypress", function (e) {
+      if (e.key === "Enter" && input.value.trim()) {
+        const msg = input.value.trim();
+        append("You", msg);
+        fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: msg })
+        })
+        .then(res => res.json())
+        .then(data => append("Sam", data.reply))
+        .catch(() => append("Sam", "Shit’s broken, bro."));
+        input.value = "";
+      }
+    });
+
+    function append(sender, msg) {
+      const div = document.createElement("div");
+      div.className = "chat-message";
+      div.innerHTML = `<b>${sender}:</b> ${msg}`;
+      chatlog.appendChild(div);
+      chatlog.scrollTop = chatlog.scrollHeight;
+    }
+  </script>
+</body>
+</html>
+
