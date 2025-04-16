@@ -2,31 +2,34 @@
 
 A savage chatbot built with Flask and Google's Gemini API.
 
-## Deployment Instructions for Render.com
+## Deployment Instructions for Replit
 
-Follow these steps to deploy this application on Render.com:
+### Setting up on Replit:
 
-1. Create a Render.com account at https://render.com/
-2. Connect your GitHub account to Render
-3. Push this project to your GitHub repository
-4. On Render dashboard, click "New" and select "Web Service"
-5. Connect your repository
-6. Configure the following settings:
-   - **Name**: Choose a name for your app
-   - **Environment**: Python 3
-   - **Build Command**: `pip install -r requirements.txt`
-   - **Start Command**: `gunicorn app:app`
-   - **Add Environment Variable**: `GEMINI_API_KEY=your_actual_api_key_here`
-7. Click "Create Web Service"
+1. Create a [Replit](https://replit.com/) account
+2. Click "Create Repl" and select "Python"
+3. Upload all project files or import directly from GitHub
+4. In the Secrets panel (lock icon 🔒), add:
+   - Key: `GEMINI_API_KEY`
+   - Value: Your Gemini API key
+5. Click "Run" to start your app
+6. Share the generated URL with anyone to let them chat with your savage friend!
 
 ## Getting a Gemini API Key
 
 To get your Gemini API key:
 
-1. Visit https://makersuite.google.com/ and sign in
+1. Visit [Google AI Studio](https://makersuite.google.com/) and sign in
 2. Click on "Get API key" in the top right
 3. Create a new API key or use an existing one
-4. Copy the API key and add it to your Render.com environment variables
+4. Copy the API key and add it to your Replit Secrets
+
+## Features
+
+- Dark-themed modern chat interface
+- Mobile-friendly design
+- Savage, sarcastic AI personality
+- No setup required for users
 
 ## Local Development
 

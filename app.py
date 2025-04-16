@@ -6,10 +6,10 @@ from dotenv import load_dotenv
 # Load environment variables
 load_dotenv()
 
-# Get API key from environment variables
+# Get API key from environment variables or Replit secrets
 api_key = os.getenv("GEMINI_API_KEY")
 if not api_key:
-    raise ValueError("API key not found! Set GEMINI_API_KEY environment variable")
+    raise ValueError("API key not found! Add GEMINI_API_KEY to Replit Secrets")
 
 # Configure Gemini
 genai.configure(api_key=api_key)
@@ -52,8 +52,9 @@ def talk():
     response = chat.send_message(user_input)
     return jsonify({"reply": response.text.strip()})
 
-# For local development
+# For Replit
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=False)
+    # Use port 8080 for Replit
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port)
 
